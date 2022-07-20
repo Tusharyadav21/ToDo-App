@@ -47,9 +47,9 @@ export const AllTab = () => {
 										width='61.007'
 										height='49.3189'
 										filterUnits='userSpaceOnUse'
-										color-interpolation-filters='sRGB'
+										colorInterpolationFilters='sRGB'
 									>
-										<feFlood flood-opacity='0' result='BackgroundImageFix' />
+										<feFlood floodOpacity='0' result='BackgroundImageFix' />
 										<feColorMatrix
 											in='SourceAlpha'
 											type='matrix'
