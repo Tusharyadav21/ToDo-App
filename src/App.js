@@ -1,4 +1,4 @@
-import { Profiler, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { List } from "./Context";
 import styles from "./App.module.css";
 import { AllTab, ActiveTab, CompletedTab } from "./components/Tab";
