@@ -30,6 +30,7 @@ function App() {
 				<h1>Task List</h1>
 				<form onSubmit={handleSubmit}>
 					<input
+						id={styles.task_input}
 						type='text'
 						placeholder='Task'
 						value={task}
@@ -37,13 +38,19 @@ function App() {
 							setTask(e.target.value);
 						}}
 					/>
-					<input type='submit' value='Add' />
+					<input id={styles.task_submit} type='submit' value='Add' />
 				</form>
 				<br />
 				<div>
-					<button onClick={() => setTab(1)}>All</button>
-					<button onClick={() => setTab(2)}>Active</button>
-					<button onClick={() => setTab(3)}>Completed</button>
+					<button className={`${tab === 1 ? styles.active : ""}`} onClick={() => setTab(1)}>
+						All
+					</button>
+					<button className={`${tab === 2 ? styles.active : ""}`} onClick={() => setTab(2)}>
+						Active
+					</button>
+					<button className={`${tab === 3 ? styles.active : ""}`} onClick={() => setTab(3)}>
+						Completed
+					</button>
 				</div>
 				<br />
 				{tab === 1 && <AllTab />}

@@ -16,14 +16,14 @@ export const AllTab = () => {
 	};
 
 	return (
-		<div>
+		<div className={styles.list_container}>
 			{todo
 				.slice(0)
 				.reverse()
 				.map((el) => (
 					<div key={el.id} className={styles.list_items}>
 						<input type='checkbox' checked={el.checked} onChange={() => handleCheckboxChange(el)} />
-						<h4>{el.task}</h4>
+						<h4 className={`${el.checked ? styles.checked : ""}`}>{el.task}</h4>
 						<span onClick={() => handleRemoveTask(el)}>X</span>
 					</div>
 				))}
@@ -51,7 +51,7 @@ export const ActiveTab = () => {
 				.map((el) => (
 					<div key={el.id} className={styles.list_items}>
 						<input type='checkbox' checked={el.checked} onChange={() => handleCheckboxChange(el)} />
-						<h4>{el.task}</h4>
+						<h4 className={`${el.checked ? styles.checked : ""}`}>{el.task}</h4>
 						<span onClick={() => handleRemoveTask(el)}>X</span>
 					</div>
 				))}
@@ -78,8 +78,13 @@ export const CompletedTab = () => {
 				.filter((el) => el.checked === true)
 				.map((el) => (
 					<div key={el.id} className={styles.list_items}>
-						<input type='checkbox' checked={el.checked} onChange={() => handleCheckboxChange(el)} />
-						<h4>{el.task}</h4>
+						<input
+							id={styles.checkbox}
+							type='checkbox'
+							checked={el.checked}
+							onChange={() => handleCheckboxChange(el)}
+						/>
+						<h3 className={`${el.checked ? styles.checked : ""}`}>{el.task}</h3>
 						<span onClick={() => handleRemoveTask(el)}>X</span>
 					</div>
 				))}
