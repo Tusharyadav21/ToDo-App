@@ -1,0 +1,132 @@
+.modalBackground {
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	top: 0;
+	left: 0;
+	background-color: rgba(10, 10, 10, 0.6);
+	color: black;
+}
+.modalContainer {
+	/* min-width: 70%; */
+	/* min-height: 70%; */
+	width: 70%;
+	/* height: 70%; */
+	border-radius: 12px;
+	background-color: rgba(255, 255, 255, 0.8);
+	display: flex;
+	flex-direction: column;
+	padding: 2rem;
+	overflow-y: auto;
+	position: relative;
+}
+.CloseBtn {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
+.CloseBtn:hover {
+	transform: translateY(-3px);
+	transition: transform 0.3s ease-in-out;
+}
+.CloseBtn button {
+	color: black;
+	background-color: transparent;
+	border: none;
+	font-size: 25px;
+	cursor: pointer;
+}
+.modalBody {
+	display: grid;
+	grid-template-columns: 40% 60%;
+}
+.modalBody img {
+	width: 95%;
+}
+.modalBody h1 {
+	font-size: 1.8rem;
+	font-weight: 500;
+	margin: 0;
+}
+.Modal_Tabs_Container button {
+	color: black;
+	outline: 2px solid #f5c518;
+	margin-right: 0.8rem;
+	margin-top: 0.8rem;
+	border-radius: 8px;
+	padding: 0.5rem;
+	font-size: 1.2rem;
+}
+.active {
+	background-color: #f5c518;
+}
+.Modal_Tabs_Container button:hover {
+	cursor: pointer;
+	transform: translateY(-5px);
+	transition: all 0.3s ease-in-out;
+}
+.modalBody div {
+	font-weight: 300;
+}
+.TextContainer span {
+	font-size: 1.2rem;
+	font-weight: 500;
+}
+.TextContainer section {
+	margin: 1rem 0;
+}
+.modalBody div {
+	margin: 0.4rem 0rem;
+}
+.modalSpinner {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+@media screen and (max-width: 900px) {
+	.modalContainer {
+		width: 70%;
+		height: 70%;
+	}
+	.modalBody {
+		grid-template-columns: auto;
+	}
+}
+
+@media screen and (max-width: 670px) {
+	.col {
+		flex-direction: column;
+	}
+	.Modal_Tabs_Container button {
+	}
+}
+
+@media screen and (min-width: 1440px) {
+	.CloseBtn button {
+		font-size: 1.6vw;
+	}
+	.modalBody h1 {
+		font-size: 1.8vw;
+	}
+	.Modal_Tabs_Container button {
+		margin-top: 0.5vw;
+		margin-right: 1.1vw;
+		padding: 1vw;
+		font-size: 1.25vw;
+	}
+	.TextContainer section {
+		margin: 1vw 0;
+	}
+	.TextContainer span {
+		font-size: 1.25vw;
+		font-weight: 500;
+	}
+	.modalBody div {
+		font-size: 1.15vw;
+		margin: 0.4vw 0;
+	}
+}

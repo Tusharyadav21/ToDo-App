@@ -1,5 +1,4 @@
 .container {
-	background-color: #74ebd5;
 	background-image: linear-gradient(315deg, #74ebd5 0%, #9face6 100%);
 	height: 100vh;
 	display: flex;
@@ -7,9 +6,15 @@
 	justify-content: center;
 	overflow-y: hidden;
 }
+.container img {
+	width: 60vw;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
 .body {
-	width: 70%;
-	height: 85vh;
+	width: 75%;
+	height: 80vh;
 	background-color: rgba(255, 255, 255, 0.3);
 	color: black;
 	border-radius: 12px;
@@ -19,10 +24,17 @@
 	-webkit-box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.44);
 	-moz-box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.44);
 	box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.44);
+	z-index: 10;
+	position: relative;
 }
 .body h1 {
 	margin: 0;
 	padding: 0.8rem 0 1.2rem 0;
+}
+.add_task {
+	position: absolute;
+	right: 2vw;
+	bottom: 2vw;
 }
 .list_items {
 	display: flex;
@@ -34,7 +46,6 @@
 	border-radius: 4px;
 }
 .list_items span,
-.list_items input,
 #task_input,
 #task_submit,
 button {
@@ -47,8 +58,8 @@ button {
 #task_submit {
 	background-color: #489cff;
 }
+.list_items div:hover,
 .list_items span:hover,
-.list_items input:hover,
 button:hover,
 #task_submit:hover {
 	transform: translateY(-3px);
@@ -58,6 +69,18 @@ button:hover,
 .list_items .checked {
 	text-decoration: line-through;
 	opacity: 0.8;
+}
+.list_items div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 3vw;
+	min-width: 30px;
+	padding: 0.5rem 1rem;
+	text-align: center;
+}
+.list_items h4 {
+	/* margin: 0; */
 }
 button {
 	background-color: transparent;
@@ -70,6 +93,10 @@ button:hover {
 .active {
 	outline: none;
 }
+.error {
+	outline: 2px solid #d01f31 !important;
+}
+
 @media screen and (max-width: 480px) {
 	.body {
 		width: 100%;
@@ -78,6 +105,9 @@ button:hover {
 	}
 	.list_items {
 		padding: 0;
+	}
+	.container img {
+		width: 100vw;
 	}
 	#task_input,
 	#task_submit,
@@ -88,10 +118,6 @@ button:hover {
 }
 @media screen and (min-width: 1440px) {
 	html {
-		font-size: 1.3vw;
-	}
-	.list_items input {
-		width: 1.3vw;
-		height: 1.3vw;
+		font-size: 1.4vw;
 	}
 }
