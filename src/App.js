@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { List } from "./Context";
 import { AllTab, ActiveTab, CompletedTab } from "./components/Tab";
+import Modal from "./components/modal/Modal";
 import styles from "./App.module.css";
 
 import sally from "./assets/Saly-22.svg";
@@ -10,7 +11,7 @@ function App() {
 	const [tab, setTab] = useState(1);
 	const [err, setErr] = useState(false);
 
-	const { todo, setTodo } = useContext(List);
+	const { todo, setTodo, modal, setModal, isBlank } = useContext(List);
 
 	useEffect(() => {
 		const Arr = localStorage.getItem("todos");
@@ -20,11 +21,8 @@ function App() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	function isBlank(str) {
-		return !!!str || /^\s*$/.test(str); // Check for empty strings.
-	}
-
 	const handleSubmit = (e) => {
+		setTask(task.trim());
 		e.preventDefault();
 		const lastArrElementID = todo !== null ? todo[todo?.length - 1]?.id : 1;
 		if (!isBlank(task)) {
@@ -50,20 +48,18 @@ function App() {
 			<div className={styles.body}>
 				<h1>Task List</h1>
 				<form onSubmit={handleSubmit}>
-					<div>
-						<input
-							className={`${err ? styles.error : ""}`}
-							id={styles.task_input}
-							type='text'
-							placeholder='Task'
-							value={task}
-							onChange={(e) => {
-								setTask(e.target.value);
-							}}
-						/>
-						<input id={styles.task_submit} type='submit' value='Add' />
-					</div>
-					{err ? <p>Fill Task Correct, Then Try again!!</p> : null}
+					<input
+						className={`${err ? styles.error : ""}`}
+						id={styles.task_input}
+						type='text'
+						placeholder='Task'
+						value={task}
+						onChange={(e) => {
+							setTask(e.target.value);
+						}}
+					/>
+					{err ? <p>Fill Task Correctly..!!</p> : null}
+					<input id={styles.task_submit} type='submit' value='Add' />
 				</form>
 				<br />
 				<div>
@@ -81,6 +77,7 @@ function App() {
 				{tab === 1 && <AllTab todo={todo} setTodo={setTodo} />}
 				{tab === 2 && <ActiveTab />}
 				{tab === 3 && <CompletedTab />}
+				{modal && <Modal setModal={setModal} />}
 			</div>
 		</div>
 	);

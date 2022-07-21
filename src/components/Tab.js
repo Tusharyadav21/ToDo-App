@@ -3,9 +3,8 @@ import { List } from "../Context";
 import styles from "../App.module.css";
 
 export const AllTab = () => {
-	const { todo } = useContext(List);
-	const { handleCheckboxChange } = useContext(List);
-	const { handleRemoveTask } = useContext(List);
+	const { todo, modal, setModal, setModalData, handleCheckboxChange, handleRemoveTask } =
+		useContext(List);
 
 	return (
 		<div className={styles.list_container}>
@@ -72,7 +71,15 @@ export const AllTab = () => {
 									</defs>
 								</svg>
 							</div>
-							<h4 className={`${el.checked ? styles.checked : ""}`}>{el.task}</h4>
+							<h4
+								className={`${el.checked ? styles.checked : ""}`}
+								onClick={() => {
+									setModalData(el);
+									setModal(!modal);
+								}}
+							>
+								{el.task}
+							</h4>
 							<div onClick={() => handleRemoveTask(el)}>
 								<svg
 									width='50'
