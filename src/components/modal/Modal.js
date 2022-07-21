@@ -1,45 +1,28 @@
 import React, { useContext, useState } from "react";
 import { List } from "../../Context";
 import styles from "./modal.module.css";
+import pen from "../../assets/Casual life 3D - 28.png";
+
+import back from "../../assets/arrow-left.svg";
 
 const Modal = ({ setModal }) => {
 	const { modalData, handleEditTask } = useContext(List);
 	const [task, setTask] = useState(modalData.task);
 
 	return (
-		<div className={styles.modalBackground}>
-			<div className={styles.modalContainer}>
+		<div className={styles.modalBackground} onClick={() => setModal(false)}>
+			<div className={styles.modalContainer} onClick={(e) => e.stopPropagation()}>
 				<div className={styles.CloseBtn}>
 					<button
 						onClick={() => {
 							setModal(false);
 						}}
 					>
-						<svg
-							width='25'
-							height='25'
-							viewBox='0 0 50 50'
-							fill='none'
-							xmlns='http://www.w3.org/2000/svg'
-						>
-							<path
-								d='M3 25H48.3125'
-								stroke='black'
-								strokeWidth='5'
-								strokeLinecap='round'
-								strokeLinejoin='round'
-							/>
-							<path
-								d='M18.75 2.17392L1.5625 25L18.75 47.8261'
-								stroke='black'
-								strokeWidth='5'
-								strokeLinecap='round'
-								strokeLinejoin='round'
-							/>
-						</svg>
+						<img src={back} alt='Back Button' />
 					</button>
 				</div>
 				<div className={styles.modalBody}>
+					<h2>Edit Task</h2>
 					<form
 						onSubmit={() => {
 							handleEditTask(modalData, task);
@@ -56,6 +39,9 @@ const Modal = ({ setModal }) => {
 						/>
 						<input id={styles.modal_task_submit} type='submit' value='Add' />
 					</form>
+				</div>
+				<div className={styles.pen_image}>
+					<img src={pen} alt='Pen' />
 				</div>
 			</div>
 		</div>

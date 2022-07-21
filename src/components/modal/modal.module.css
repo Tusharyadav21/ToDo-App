@@ -13,7 +13,12 @@
 	/* min-height: 50%; */
 	width: 50%;
 	border-radius: 12px;
-	background-color: rgba(255, 255, 255, 0.7);
+	/* background-color: rgba(255, 255, 255, 0.6); */
+	background-image: linear-gradient(
+		315deg,
+		rgba(116, 235, 213, 0.6) 0%,
+		rgba(159, 172, 230, 0.8) 100%
+	);
 	display: flex;
 	flex-direction: column;
 	padding: 2rem;
@@ -21,15 +26,33 @@
 }
 .CloseBtn {
 	position: absolute;
-	top: 15px;
-	left: 0px;
+	top: 5px;
+	left: 5px;
+}
+.CloseBtn img {
+	position: relative;
+	width: 2vw;
+	min-width: 20px;
+}
+.pen_image {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+}
+.pen_image img {
+	position: relative;
+	width: 8vw;
+	min-width: 100px;
 }
 .CloseBtn:hover {
 	transform: translateY(-3px);
-	transition: transform 0.3s ease-in-out;
+	transition: transform 300ms ease-in-out;
+}
+.modalBody h2 {
+	margin: 1rem 0 0 0;
 }
 .modalBody form {
-	margin-top: 3rem;
+	margin-top: 0.5rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -51,7 +74,7 @@
 }
 #modal_task_submit:hover {
 	transform: translateY(-3px);
-	transition: all 0.3s linear;
+	transition: transform 300ms linear;
 	cursor: pointer;
 }
 
@@ -63,20 +86,7 @@
 }
 
 @media screen and (min-width: 1440px) {
-	/* .CloseBtn button {
-		font-size: 1.6vw;
+	.CloseBtn img {
+		width: 2vw;
 	}
-	.modalBody h1 {
-		font-size: 1.8vw;
-	}
-	.Modal_Tabs_Container button {
-		margin-top: 0.5vw;
-		margin-right: 1.1vw;
-		padding: 1vw;
-		font-size: 1.25vw;
-	}
-	.modalBody div {
-		font-size: 1.15vw;
-		margin: 0.4vw 0;
-	} */
 }
