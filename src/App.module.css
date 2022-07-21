@@ -44,7 +44,7 @@ form p {
 	flex-direction: column;
 }
 .active {
-	outline: none;
+	border: none !important;
 }
 .error {
 	outline: 2px solid #d01f31 !important;
