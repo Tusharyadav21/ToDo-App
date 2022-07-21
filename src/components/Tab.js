@@ -20,7 +20,7 @@ export const AllTab = () => {
 
 	return (
 		<div className={styles.list_container}>
-			{console.log(todo)}
+			{/* {console.log(todo)} */}
 			{todo
 				?.slice(0)
 				?.reverse()

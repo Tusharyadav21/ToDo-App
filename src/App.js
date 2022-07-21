@@ -22,7 +22,7 @@ function App() {
 		const Arr = localStorage.getItem("todos");
 		const parsedArr = JSON.parse(Arr);
 		setTodo(parsedArr);
-		console.log(parsedArr);
+		// console.log(parsedArr);
 	}, []);
 
 	function isBlank(str) {
