@@ -1,22 +1,29 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { List } from "./Context";
 import styles from "./App.module.css";
 import { AllTab, ActiveTab, CompletedTab } from "./components/Tab";
 import sally from "./assets/Saly-22.svg";
-import Modal from "./components/modal/Modal";
+// import Modal from "./components/modal/Modal";
 
 function App() {
 	const [task, setTask] = useState("");
 	const [tab, setTab] = useState(1);
 	const [err, setErr] = useState(false);
 
-	const [modal, setModal] = useState(false);
-
-	const handleModal = () => {
-		setModal(true);
-	};
-
 	const { todo, setTodo } = useContext(List);
+
+	// const [modal, setModal] = useState(false);
+	console.log();
+	// const handleModal = () => {
+	// 	setModal(true);
+	// };
+
+	useEffect(() => {
+		const Arr = localStorage.getItem("todos");
+		const parsedArr = JSON.parse(Arr);
+		setTodo(parsedArr);
+		console.log(parsedArr);
+	}, []);
 
 	function isBlank(str) {
 		return !!!str || /^\s*$/.test(str); // Check for empty strings.
@@ -24,7 +31,7 @@ function App() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		const lastArrElementID = todo[todo.length - 1]?.id;
+		const lastArrElementID = todo !== null ? todo[todo?.length - 1]?.id : 1;
 		if (!isBlank(task)) {
 			setErr(false);
 			const newID = lastArrElementID + 1;
@@ -33,8 +40,10 @@ function App() {
 				task: task,
 				checked: false,
 			};
-			setTodo([...todo, newTodoObj]);
+			const newArr = todo !== null ? [...todo, newTodoObj] : [newTodoObj];
+			setTodo(newArr);
 			setTask("");
+			localStorage.setItem("todos", JSON.stringify(newArr));
 		} else {
 			setErr(true);
 		}
@@ -77,7 +86,7 @@ function App() {
 				{tab === 1 && <AllTab />}
 				{tab === 2 && <ActiveTab />}
 				{tab === 3 && <CompletedTab />}
-				<div className={styles.add_task} onClick={handleModal}>
+				{/* <div className={styles.add_task} onClick={handleModal}>
 					<svg
 						width='80'
 						height='80'
@@ -92,8 +101,8 @@ function App() {
 							fill='#0075FF'
 						/>
 					</svg>
-				</div>
-				{modal && <Modal setModal={setModal} />}
+				</div> */}
+				{/* {modal && <Modal setModal={setModal} />} */}
 			</div>
 		</div>
 	);

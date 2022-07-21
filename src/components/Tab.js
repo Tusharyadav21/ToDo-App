@@ -9,19 +9,22 @@ export const AllTab = () => {
 	const handleCheckboxChange = (el) => {
 		el.checked = !el.checked;
 		setTodo([...todo]);
+		localStorage.setItem("todos", JSON.stringify([...todo]));
 	};
 
 	const handleRemoveTask = (el) => {
 		const filteredTodo = todo.filter((x) => x.id !== el.id);
 		setTodo([...filteredTodo]);
+		localStorage.setItem("todos", JSON.stringify(filteredTodo));
 	};
 
 	return (
 		<div className={styles.list_container}>
+			{console.log(todo)}
 			{todo
-				.slice(0)
-				.reverse()
-				.map((el) => (
+				?.slice(0)
+				?.reverse()
+				?.map((el) => (
 					<div key={el.id} className={styles.list_items}>
 						<div onClick={() => handleCheckboxChange(el)}>
 							<svg
