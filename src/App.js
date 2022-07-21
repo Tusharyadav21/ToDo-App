@@ -74,7 +74,7 @@ function App() {
 					</button>
 				</div>
 				<br />
-				{tab === 1 && <AllTab todo={todo} setTodo={setTodo} />}
+				{tab === 1 && <AllTab />}
 				{tab === 2 && <ActiveTab />}
 				{tab === 3 && <CompletedTab />}
 				{modal && <Modal setModal={setModal} />}

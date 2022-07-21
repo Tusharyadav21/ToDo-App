@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 import { List } from "../Context";
 import styles from "../App.module.css";
+import check from "../assets/check.svg";
+import notStarted from "../assets/Not started.svg";
+import trash from "../assets/trash.svg";
 
 export const AllTab = () => {
 	const { todo, modal, setModal, setModalData, handleCheckboxChange, handleRemoveTask } =
@@ -8,8 +11,8 @@ export const AllTab = () => {
 
 	return (
 		<div className={styles.list_container}>
-			{todo === null ? (
-				<h1>No Items</h1>
+			{todo === null || todo?.length === 0 ? (
+				<h4>No Items</h4>
 			) : (
 				todo
 					?.slice(0)
@@ -17,61 +20,13 @@ export const AllTab = () => {
 					?.map((el) => (
 						<div key={el.id} className={styles.list_items}>
 							<div onClick={() => handleCheckboxChange(el)}>
-								<svg
-									width='56'
-									height='46'
-									viewBox='0 0 56 46'
-									fill='none'
-									xmlns='http://www.w3.org/2000/svg'
-								>
-									<g filter='url(#filter0_d_9_14)'>
-										<path
-											d='M3 21L19.6667 40L53 2'
-											stroke='#3EBB7F'
-											strokeWidth='4'
-											strokeLinejoin='round'
-										/>
-									</g>
-									<defs>
-										<filter
-											id='filter0_d_9_14'
-											x='-2.50352'
-											y='0.681124'
-											width='61.007'
-											height='49.3189'
-											filterUnits='userSpaceOnUse'
-											colorInterpolationFilters='sRGB'
-										>
-											<feFlood floodOpacity='0' result='BackgroundImageFix' />
-											<feColorMatrix
-												in='SourceAlpha'
-												type='matrix'
-												values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
-												result='hardAlpha'
-											/>
-											<feOffset dy='4' />
-											<feGaussianBlur stdDeviation='2' />
-											<feComposite in2='hardAlpha' operator='out' />
-											<feColorMatrix
-												type='matrix'
-												values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0'
-											/>
-											<feBlend
-												mode='normal'
-												in2='BackgroundImageFix'
-												result='effect1_dropShadow_9_14'
-											/>
-											<feBlend
-												mode='normal'
-												in='SourceGraphic'
-												in2='effect1_dropShadow_9_14'
-												result='shape'
-											/>
-										</filter>
-									</defs>
-								</svg>
+								{el.checked ? (
+									<img src={check} alt='Completed Button' />
+								) : (
+									<img src={notStarted} alt='Not Completed Button' />
+								)}
 							</div>
-							<h4
+							<h3
 								className={`${el.checked ? styles.checked : ""}`}
 								onClick={() => {
 									setModalData(el);
@@ -79,33 +34,9 @@ export const AllTab = () => {
 								}}
 							>
 								{el.task}
-							</h4>
+							</h3>
 							<div onClick={() => handleRemoveTask(el)}>
-								<svg
-									width='50'
-									height='50'
-									viewBox='0 0 50 50'
-									fill='none'
-									xmlns='http://www.w3.org/2000/svg'
-								>
-									<g clipPath='url(#clip0_76_979)'>
-										<path
-											d='M13.7407 15V39C13.7407 40.1046 14.6362 41 15.7407 41H34.2593C35.3638 41 36.2593 40.1046 36.2593 39V15M9 15H41'
-											stroke='black'
-											strokeWidth='2'
-											strokeLinecap='round'
-										/>
-										<path
-											d='M18 9H32'
-											stroke='black'
-											strokeWidth='2'
-											strokeLinecap='round'
-											strokeLinejoin='round'
-										/>
-										<path d='M21 24V33' stroke='black' strokeWidth='2' strokeLinecap='round' />
-										<path d='M29 24V33' stroke='black' strokeWidth='2' strokeLinecap='round' />
-									</g>
-								</svg>
+								<img src={trash} alt='Delete Task Button' />
 							</div>
 						</div>
 					))
@@ -115,201 +46,79 @@ export const AllTab = () => {
 };
 
 export const ActiveTab = () => {
-	const { todo } = useContext(List);
-	const { handleCheckboxChange } = useContext(List);
-	const { handleRemoveTask } = useContext(List);
+	const { todo, modal, setModal, setModalData, handleCheckboxChange, handleRemoveTask } =
+		useContext(List);
 
 	return (
 		<div>
-			{todo
-				.filter((el) => el.checked === false)
-				.map((el) => (
-					<div key={el.id} className={styles.list_items}>
-						<div onClick={() => handleCheckboxChange(el)}>
-							<svg
-								width='56'
-								height='46'
-								viewBox='0 0 56 46'
-								fill='none'
-								xmlns='http://www.w3.org/2000/svg'
+			{todo === null || todo?.length === 0 ? (
+				<h4>No Items</h4>
+			) : (
+				todo
+					.filter((el) => el.checked === false)
+					.map((el) => (
+						<div key={el.id} className={styles.list_items}>
+							<div onClick={() => handleCheckboxChange(el)}>
+								{el.checked ? (
+									<img src={check} alt='Completed Button' />
+								) : (
+									<img src={notStarted} alt='Not Completed Button' />
+								)}
+							</div>
+							<h3
+								className={`${el.checked ? styles.checked : ""}`}
+								onClick={() => {
+									setModalData(el);
+									setModal(!modal);
+								}}
 							>
-								<g filter='url(#filter0_d_9_14)'>
-									<path
-										d='M3 21L19.6667 40L53 2'
-										stroke='#3EBB7F'
-										strokeWidth='4'
-										strokeLinejoin='round'
-									/>
-								</g>
-								<defs>
-									<filter
-										id='filter0_d_9_14'
-										x='-2.50352'
-										y='0.681124'
-										width='61.007'
-										height='49.3189'
-										filterUnits='userSpaceOnUse'
-										colorInterpolationFilters='sRGB'
-									>
-										<feFlood floodOpacity='0' result='BackgroundImageFix' />
-										<feColorMatrix
-											in='SourceAlpha'
-											type='matrix'
-											values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
-											result='hardAlpha'
-										/>
-										<feOffset dy='4' />
-										<feGaussianBlur stdDeviation='2' />
-										<feComposite in2='hardAlpha' operator='out' />
-										<feColorMatrix
-											type='matrix'
-											values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0'
-										/>
-										<feBlend
-											mode='normal'
-											in2='BackgroundImageFix'
-											result='effect1_dropShadow_9_14'
-										/>
-										<feBlend
-											mode='normal'
-											in='SourceGraphic'
-											in2='effect1_dropShadow_9_14'
-											result='shape'
-										/>
-									</filter>
-								</defs>
-							</svg>
+								{el.task}
+							</h3>
+							<div onClick={() => handleRemoveTask(el)}>
+								<img src={trash} alt='Delete Task Button' />
+							</div>
 						</div>
-						<h4 className={`${el.checked ? styles.checked : ""}`}>{el.task}</h4>
-						<div onClick={() => handleRemoveTask(el)}>
-							<svg
-								width='50'
-								height='50'
-								viewBox='0 0 50 50'
-								fill='none'
-								xmlns='http://www.w3.org/2000/svg'
-							>
-								<g clipPath='url(#clip0_76_979)'>
-									<path
-										d='M13.7407 15V39C13.7407 40.1046 14.6362 41 15.7407 41H34.2593C35.3638 41 36.2593 40.1046 36.2593 39V15M9 15H41'
-										stroke='black'
-										strokeWidth='2'
-										strokeLinecap='round'
-									/>
-									<path
-										d='M18 9H32'
-										stroke='black'
-										strokeWidth='2'
-										strokeLinecap='round'
-										strokeLinejoin='round'
-									/>
-									<path d='M21 24V33' stroke='black' strokeWidth='2' strokeLinecap='round' />
-									<path d='M29 24V33' stroke='black' strokeWidth='2' strokeLinecap='round' />
-								</g>
-							</svg>
-						</div>
-					</div>
-				))}
+					))
+			)}
 		</div>
 	);
 };
 
 export const CompletedTab = () => {
-	const { todo } = useContext(List);
-	const { handleCheckboxChange } = useContext(List);
-	const { handleRemoveTask } = useContext(List);
+	const { todo, modal, setModal, setModalData, handleCheckboxChange, handleRemoveTask } =
+		useContext(List);
 
 	return (
 		<div>
-			{todo
-				.filter((el) => el.checked === true)
-				.map((el) => (
-					<div key={el.id} className={styles.list_items}>
-						<div onClick={() => handleCheckboxChange(el)}>
-							<svg
-								width='56'
-								height='46'
-								viewBox='0 0 56 46'
-								fill='none'
-								xmlns='http://www.w3.org/2000/svg'
+			{todo === null || todo?.length === 0 ? (
+				<h4>No Items</h4>
+			) : (
+				todo
+					.filter((el) => el.checked === true)
+					.map((el) => (
+						<div key={el.id} className={styles.list_items}>
+							<div onClick={() => handleCheckboxChange(el)}>
+								{el.checked ? (
+									<img src={check} alt='Completed Button' />
+								) : (
+									<img src={notStarted} alt='Not Completed Button' />
+								)}
+							</div>
+							<h3
+								className={`${el.checked ? styles.checked : ""}`}
+								onClick={() => {
+									setModalData(el);
+									setModal(!modal);
+								}}
 							>
-								<g filter='url(#filter0_d_9_14)'>
-									<path
-										d='M3 21L19.6667 40L53 2'
-										stroke='#3EBB7F'
-										strokeWidth='4'
-										strokeLinejoin='round'
-									/>
-								</g>
-								<defs>
-									<filter
-										id='filter0_d_9_14'
-										x='-2.50352'
-										y='0.681124'
-										width='61.007'
-										height='49.3189'
-										filterUnits='userSpaceOnUse'
-										colorInterpolationFilters='sRGB'
-									>
-										<feFlood floodOpacity='0' result='BackgroundImageFix' />
-										<feColorMatrix
-											in='SourceAlpha'
-											type='matrix'
-											values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
-											result='hardAlpha'
-										/>
-										<feOffset dy='4' />
-										<feGaussianBlur stdDeviation='2' />
-										<feComposite in2='hardAlpha' operator='out' />
-										<feColorMatrix
-											type='matrix'
-											values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0'
-										/>
-										<feBlend
-											mode='normal'
-											in2='BackgroundImageFix'
-											result='effect1_dropShadow_9_14'
-										/>
-										<feBlend
-											mode='normal'
-											in='SourceGraphic'
-											in2='effect1_dropShadow_9_14'
-											result='shape'
-										/>
-									</filter>
-								</defs>
-							</svg>
+								{el.task}
+							</h3>
+							<div onClick={() => handleRemoveTask(el)}>
+								<img src={trash} alt='Delete Task Button' />
+							</div>
 						</div>
-						<h4 className={`${el.checked ? styles.checked : ""}`}>{el.task}</h4>
-						<div onClick={() => handleRemoveTask(el)}>
-							<svg
-								width='50'
-								height='50'
-								viewBox='0 0 50 50'
-								fill='none'
-								xmlns='http://www.w3.org/2000/svg'
-							>
-								<g clipPath='url(#clip0_76_979)'>
-									<path
-										d='M13.7407 15V39C13.7407 40.1046 14.6362 41 15.7407 41H34.2593C35.3638 41 36.2593 40.1046 36.2593 39V15M9 15H41'
-										stroke='black'
-										strokeWidth='2'
-										strokeLinecap='round'
-									/>
-									<path
-										d='M18 9H32'
-										stroke='black'
-										strokeWidth='2'
-										strokeLinecap='round'
-										strokeLinejoin='round'
-									/>
-									<path d='M21 24V33' stroke='black' strokeWidth='2' strokeLinecap='round' />
-									<path d='M29 24V33' stroke='black' strokeWidth='2' strokeLinecap='round' />
-								</g>
-							</svg>
-						</div>
-					</div>
-				))}
+					))
+			)}
 		</div>
 	);
 };
