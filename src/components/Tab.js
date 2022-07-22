@@ -6,8 +6,7 @@ import notStarted from "../assets/Not started.svg";
 import trash from "../assets/trash.svg";
 
 export const AllTab = () => {
-	const { todo, modal, setModal, setModalData, handleCheckboxChange, handleRemoveTask } =
-		useContext(List);
+	const { todo, setModal, setModalData, handleCheckboxChange, handleRemoveTask } = useContext(List);
 
 	return (
 		<div className={styles.list_container}>
@@ -30,7 +29,7 @@ export const AllTab = () => {
 								className={`${el.checked ? styles.checked : ""}`}
 								onClick={() => {
 									setModalData(el);
-									setModal(!modal);
+									setModal(true);
 								}}
 							>
 								{el.task}
@@ -46,8 +45,7 @@ export const AllTab = () => {
 };
 
 export const ActiveTab = () => {
-	const { todo, modal, setModal, setModalData, handleCheckboxChange, handleRemoveTask } =
-		useContext(List);
+	const { todo, setModal, setModalData, handleCheckboxChange, handleRemoveTask } = useContext(List);
 
 	return (
 		<div>
@@ -69,7 +67,7 @@ export const ActiveTab = () => {
 								className={`${el.checked ? styles.checked : ""}`}
 								onClick={() => {
 									setModalData(el);
-									setModal(!modal);
+									setModal(true);
 								}}
 							>
 								{el.task}
@@ -85,8 +83,7 @@ export const ActiveTab = () => {
 };
 
 export const CompletedTab = () => {
-	const { todo, modal, setModal, setModalData, handleCheckboxChange, handleRemoveTask } =
-		useContext(List);
+	const { todo, setModal, setModalData, handleCheckboxChange, handleRemoveTask } = useContext(List);
 
 	return (
 		<div>
@@ -108,7 +105,7 @@ export const CompletedTab = () => {
 								className={`${el.checked ? styles.checked : ""}`}
 								onClick={() => {
 									setModalData(el);
-									setModal(!modal);
+									setModal(true);
 								}}
 							>
 								{el.task}
