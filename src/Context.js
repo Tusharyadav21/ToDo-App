@@ -19,15 +19,6 @@ const Context = ({ children }) => {
 		localStorage.setItem("todos", JSON.stringify(filteredTodo));
 	};
 
-	const handleEditTask = (el, task) => {
-		console.log(el, task);
-		if (!isBlank(task)) {
-			el.task = task;
-			setTodo([...todo]);
-			localStorage.setItem("todos", JSON.stringify([...todo]));
-		}
-	};
-
 	function isBlank(str) {
 		return !!!str || /^\s*$/.test(str); // Check for empty strings.
 	}
@@ -43,7 +34,6 @@ const Context = ({ children }) => {
 				setModalData,
 				handleCheckboxChange: handleCheckboxChange,
 				handleRemoveTask: handleRemoveTask,
-				handleEditTask: handleEditTask,
 				isBlank: isBlank,
 			}}
 		>
